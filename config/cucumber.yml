@@ -2,8 +2,8 @@
 
 ---
 default: &default
-  URI=http://www.google.com
-  BROWSER=ff
+  URI=https://www.google.com
+  BROWSER=chrome
   SET=production
 
 production:

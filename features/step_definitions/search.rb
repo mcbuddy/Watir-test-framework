@@ -1,5 +1,7 @@
 require_relative 'watir_helper'
+require_relative '../pages/search_page'
 include WatirHelper
+include SearchPage
 
 Before do |scenario|
   @browser = WatirHelper.browser
@@ -15,14 +17,11 @@ Given(/^I at google search homepage$/) do
 end
 
 When(/^I search for "([^"]*)" keyword$/) do |keyword|
-  @browser.text_field(id: 'lst-ib').set(keyword)
-  @browser.send_keys :enter
+  SearchPage.search_bar(keyword)
 end
 
 Then(/^I should see "([^"]*)" search result$/) do |keyword|
-  @browser.element(id: 'resultStats').wait_until_present
-  expect(@browser.element(id: 'resultStats').text.to include('results'))
-  # puts @browser.element(id: 'rso').text
+  SearchPage.wait_for_result
 end
 
 Then(/^I should see "([^"]*)" official homepage$/) do |keyword|
