@@ -2,7 +2,7 @@
 
 ---
 default: &default
-  URI=https://www.google.com
+  URI=https://inrhythm-qa.glitch.me
   BROWSER=chrome
   SET=production
 
