@@ -43,4 +43,30 @@ Then(/^I should go to (\w+) section page$/) do |button|
   expect(@browser.url).to eql(ENV['URI'] + add_url)
 end
 
+When(/^I click "([^"]*)" on the homepage$/) do |button|
+  case button
+    when 'Find Out More'
+      loc_xpath = '//*[@id="page-top"]/header/div/div/a'
+    when 'Get Started!'
+      loc_xpath =  '//*[@id="about"]/div/div/div/a'
+    when 'feedback@inrhythm.com'
+      loc_xpath = '//*[@id="contact"]/div/div/div[2]/p/a'
+  end
+  @browser.element(xpath: loc_xpath).click
+end
+
+Then(/^I should go to "([^"]*)" section page$/) do |button|
+  case button
+    when 'Find Out More'
+      add_url = '/#about'
+    when 'Get Started!'
+      add_url = '/#services'
+  end
+  expect(@browser.url).to eql(ENV['URI'] + add_url)
+end
+
+Then(/^I should be able to send the email to "([^"]*)"$/) do |email|
+  expect(@browser.element(xpath: '//*[@id="contact"]/div/div/div[2]/p/a').attribute_value('href')).to eql("mailto:#{email}")
+end
+
 

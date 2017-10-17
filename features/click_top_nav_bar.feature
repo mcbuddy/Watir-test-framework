@@ -1,4 +1,4 @@
-# ../features/campaign.feature
+# ../features/click_top_nav_bar.feature
 
 Feature: As end user I want to click all the navigation bar
 
